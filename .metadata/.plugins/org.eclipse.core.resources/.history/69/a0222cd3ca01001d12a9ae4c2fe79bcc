@@ -1,0 +1,45 @@
+package tn.esprit.pidev.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import tn.esprit.pidev.entities.Reclamation;
+import tn.esprit.pidev.repositories.ReclamationRepository;
+
+@Service
+public class ReclamationService implements IReclamationService {
+
+	@Autowired
+	ReclamationRepository ReclamationRespository;
+
+	@Override
+	public Long ModifierReclamation(Reclamation Reclamation) {
+		ReclamationRespository.save(Reclamation);
+		return Reclamation.getIdReclamation();
+	}
+
+	@Override
+	public Long AjouterReclamation(Reclamation Reclamation) {
+		ReclamationRespository.save(Reclamation);
+		return Reclamation.getIdReclamation();
+	}
+
+	@Override
+	public void SupprimerReclamation(Long idReclamation) {
+		ReclamationRespository.deleteById(idReclamation);
+
+	}
+
+	@Override
+	public Reclamation getReclamationById(Long idReclamation) {
+		return ReclamationRespository.findById(idReclamation).orElse(null);
+	}
+
+	@Override
+	public List<Reclamation> getReclamations() {
+		return ReclamationRespository.findAll();
+	}
+
+}
