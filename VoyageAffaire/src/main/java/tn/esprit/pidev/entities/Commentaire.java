@@ -21,9 +21,18 @@ public class Commentaire {
 	
 	
 	
-	public Commentaire(Long idcom, Publication pubcomm, Employe empcommentaire) {
+	public Commentaire() {
+		super();
+	}
+
+
+
+
+
+	public Commentaire(Long idcom, Publication pubcomm, Employe empcommentaire, String contenu) {
 		super();
 		this.idcom = idcom;
+		this.contenu = contenu;
 		this.pubcomm = pubcomm;
 		this.empcommentaire = empcommentaire;
 	}
