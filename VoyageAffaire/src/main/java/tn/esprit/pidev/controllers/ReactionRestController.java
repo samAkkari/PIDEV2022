@@ -10,39 +10,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import tn.esprit.pidev.entities.Reaction;
 import tn.esprit.pidev.services.IReactionService;
 
-
 @RequestMapping("/reaction")
+@Api("Gestion des Réactions")
 @RestController
+public class ReactionRestController {
 
-
-public class ReactionRestController   {
-
-	
-@Autowired
+	@Autowired
 	IReactionService reactionService;
 
+	@ApiOperation(value = "Ajouter une réaction")
 	@PostMapping("/addRecation")
 	@ResponseBody
-	public Reaction addVoyage(@RequestBody Reaction reaction ) {
+	public Reaction addVoyage(@RequestBody Reaction reaction) {
 		reactionService.AjouterReaction(reaction);
 		return reaction;
 	}
 
+	@ApiOperation(value = "Modifier une réaction")
 	@PutMapping("/modifierReaction")
 	@ResponseBody
 	public Reaction updaterecation(@RequestBody Reaction reaction) {
 		reactionService.ModifierReaction(reaction);
 		return reaction;
 	}
-	
 
+	@ApiOperation(value = "Supprimer une réaction")
 	@DeleteMapping("/supprimerReaction/{IdReaction}")
 	@ResponseBody
 	public void deleteEmploye(@PathVariable("IdReaction") Long IdReaction) {
 		reactionService.SupprimerReaction(IdReaction);
 	}
-	
+
 }

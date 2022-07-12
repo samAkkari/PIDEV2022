@@ -42,4 +42,10 @@ public class EntrepriseService implements IEntrepriseService {
 		return entrepriseRespository.findAll();
 	}
 
+	@Override
+	public int nombrePublicationParEntreprise(Long idEntreprise) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

@@ -10,24 +10,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import tn.esprit.pidev.entities.Commentaire;
 import tn.esprit.pidev.services.ICommentaireService;
 @RequestMapping("/commentaire")
+@Api("Gestion des Commentaires")
 @RestController
-
 public class CommenatireRestController {
 
 	
 	@Autowired
 	ICommentaireService commentaireService;
-
+	
+	@ApiOperation(value = "Ajouter un commentaire")
 	@PostMapping("/addCommentaire")
 	@ResponseBody
 	public Commentaire addCommentaire(@RequestBody Commentaire commentaire) {
 		commentaireService.AjouterCommentaire(commentaire);
 		return commentaire;
 	}
-
+	@ApiOperation(value = "Modifier un commentaire")
 	@PutMapping("/modifierCommentaire")
 	@ResponseBody
 	public Commentaire updateCommentaire(@RequestBody Commentaire commentaire) {
@@ -35,7 +38,7 @@ public class CommenatireRestController {
 		return commentaire;
 	}
 	
-
+	@ApiOperation(value = "Supprimer un commentaire")
 	@DeleteMapping("/supprimerCommentaire/{IdCommentaire}")
 	@ResponseBody
 	public void deleteCommentaire(@PathVariable("idcom") Long idcom) {

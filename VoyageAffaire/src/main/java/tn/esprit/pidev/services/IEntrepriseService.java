@@ -16,4 +16,6 @@ public interface IEntrepriseService {
 
 	List<Entreprise> getEntreprises();
 
+	int nombrePublicationParEntreprise(Long idEntreprise);
+
 }

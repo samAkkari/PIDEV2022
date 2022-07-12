@@ -9,18 +9,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import tn.esprit.pidev.entities.Invitation;
 import tn.esprit.pidev.services.IInvitationService;
 
 @RequestMapping("/invitation")
+@Api("Gestion des invitations")
 @RestController
 public class InvitationRestController {
 
 	@Autowired
 	IInvitationService invitationService;
 
-	
-	
+	@ApiOperation(value = "Ajouter une invitation")
 	@PostMapping("/addInvitation")
 	@ResponseBody
 	public Invitation addInvitation(@RequestBody Invitation invitation) {
@@ -28,19 +31,19 @@ public class InvitationRestController {
 		return invitation;
 	}
 
+	@ApiOperation(value = "Modifier une invitation")
 	@PutMapping("/modifierInvitation")
 	@ResponseBody
 	public Invitation updateInvitation(@RequestBody Invitation invitation) {
 		invitationService.ModifierInvitation(invitation);
 		return invitation;
 	}
-	
 
+	@ApiOperation(value = "Supprimer une invitation")
 	@DeleteMapping("/supprimerInvitation/{IdInvitationl}")
 	@ResponseBody
 	public void deleteInvitation(@PathVariable("IdInvitationl") Long IdInvitationl) {
 		invitationService.SupprimerInvitation(IdInvitationl);
 	}
-	
-	
+
 }
