@@ -1,0 +1,48 @@
+package tn.esprit.pidev.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+
+import tn.esprit.pidev.entities.Publication;
+import tn.esprit.pidev.services.IPublicationService;
+
+
+
+@RequestMapping("/Publication")
+@RestController
+public class PublicationRestController {
+
+	
+	@Autowired
+	IPublicationService publicationService;
+
+
+	@PostMapping("/addPublication")
+	@ResponseBody
+	public Publication addInvitation(@RequestBody Publication publication) {
+		publicationService.AjouterPublication(publication);
+		return publication;
+	}
+
+	@PutMapping("/modifierInvitation")
+	@ResponseBody
+	public Publication updateInvitation(@RequestBody Publication publication) {
+		publicationService.ModifierPublication(publication);
+		return publication;
+	}
+	
+
+	@DeleteMapping("/supprimerPublication/{IdPublicationl}")
+	@ResponseBody
+	public void deleteInvitation(@PathVariable("IdPublicationl") Long IdPublicationl) {
+		publicationService.SupprimerPublication(IdPublicationl);
+	}
+}

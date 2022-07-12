@@ -26,6 +26,7 @@ public class EntrepriseRestController {
 	@Autowired
 	IEntrepriseService entrepriseService;
 
+	@ApiOperation(value = "Liste des entreprises")
 	@GetMapping("/listeEntreprises")
 	@ResponseBody
 	public List<Entreprise> listeCours() {

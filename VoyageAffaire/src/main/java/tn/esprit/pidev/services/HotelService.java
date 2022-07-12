@@ -1,5 +1,7 @@
 package tn.esprit.pidev.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,11 @@ public class HotelService implements IHotelService {
 	@Override
 	public Hotel getHotelById(Long idHotel) {
 		return hotelRepository.findById(idHotel).orElse(null);
+	}
+
+	@Override
+	public List<Hotel> getHotels() {
+		return hotelRepository.findAll();
 	}
 
 	
