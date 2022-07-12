@@ -12,7 +12,6 @@ public class Commentaire {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private  Long idcom; 
-	private String contenu;
 	@ManyToOne
 	private Publication pubcomm;
 	@ManyToOne
@@ -54,22 +53,6 @@ public class Commentaire {
 
 	public void setEmpcommentaire(Employe empcommentaire) {
 		this.empcommentaire = empcommentaire;
-	}
-
-
-
-
-
-	public String getContenu() {
-		return contenu;
-	}
-
-
-
-
-
-	public void setContenu(String contenu) {
-		this.contenu = contenu;
 	}
 
 	
