@@ -2,6 +2,7 @@ package tn.esprit.pidev.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -44,6 +45,13 @@ public class InvitationRestController {
 	@ResponseBody
 	public void deleteInvitation(@PathVariable("IdInvitationl") Long IdInvitationl) {
 		invitationService.SupprimerInvitation(IdInvitationl);
+	}
+	
+	@ApiOperation(value = "Recupere une invitation")
+	@GetMapping("/recupererInvitation/{IdInvitationl}")
+	@ResponseBody
+	public Invitation getInvitation(@PathVariable("IdInvitationl") Long IdInvitationl) {
+		return invitationService.getInvitationById(IdInvitationl);
 	}
 
 }
