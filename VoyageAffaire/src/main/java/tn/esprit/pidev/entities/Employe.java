@@ -12,7 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
+
+
+
+
 @Entity
+
 public class Employe {
 
 @Id
@@ -37,6 +42,13 @@ List<Publication>publications;
 
 @ManyToOne
 private Invitation invitemp;
+
+@ManyToMany
+List<Evenemment>evenementsemp;
+
+
+
+
 
 
 
@@ -192,6 +204,27 @@ public List<Commentaire> getCommentaires() {
 
 public void setCommentaires(List<Commentaire> commentaires) {
 	this.commentaires = commentaires;
+}
+
+
+
+public List<Evenemment> getEvenementsemp() {
+	return evenementsemp;
+}
+
+
+
+public void setEvenementsemp(List<Evenemment> evenementsemp) {
+	this.evenementsemp = evenementsemp;
+}
+
+
+
+@Override
+public String toString() {
+	return "Employe [idEmploye=" + idEmploye + ", nom=" + nom + ", tel=" + tel + ", login=" + login + ", mdp=" + mdp
+			+ ", profession=" + profession + ", voyages=" + voyages + ", commentaires=" + commentaires
+			+ ", publications=" + publications + ", invitemp=" + invitemp + ", evenementsemp=" + evenementsemp + "]";
 }
 
 

@@ -11,6 +11,7 @@
 	</parent>
 	<groupId>tn.esprit.pidev</groupId>
 	<artifactId>VoyageAffaire</artifactId>
+	<packaging>jar</packaging>
 	<version>1.0</version>
 	<name>VoyageAffaire</name>
 	<description>Demo project for Spring Boot</description>
@@ -25,6 +26,18 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+			<version>2.5.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.batch/spring-batch-core -->
+		<dependency>
+			<groupId>org.springframework.batch</groupId>
+			<artifactId>spring-batch-core</artifactId>
+			<version>4.3.0</version>
 		</dependency>
 
 		<dependency>

@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiOperation;
 import tn.esprit.pidev.entities.Employe;
 
 import tn.esprit.pidev.services.IEmployeService;
+import tn.esprit.pidev.services.IVoyageService;
 
 @RequestMapping("/employe")
 @Api("Gestion des Employes")
@@ -23,6 +24,9 @@ public class EmployeRestController {
 
 	@Autowired
 	IEmployeService employeService;
+	
+	@Autowired
+	IVoyageService voyageService;
 
 	@ApiOperation(value = "Ajouter un employé")
 	@PostMapping("/addEmploye")
@@ -46,5 +50,10 @@ public class EmployeRestController {
 	public void deleteEmploye(@PathVariable("IdEmploye") Long IdEmploye) {
 		employeService.SupprimerEmploye(IdEmploye);
 	}
+	
+	@PostMapping("/ajouter-employe/{id-voyage}")
+	@ResponseBody
+	public void EmployerVoyage(@RequestBody Employe employe,@PathVariable("id-voyage") Long idVoyage) {
+		employeService.ajouterEmployeEtAffecterAvoyage(employe,idVoyage);
 
-}
+}}

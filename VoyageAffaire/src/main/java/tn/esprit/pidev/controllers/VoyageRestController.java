@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
 import tn.esprit.pidev.entities.Voyage;
 import tn.esprit.pidev.services.IVoyageService;
 
@@ -24,6 +25,8 @@ public class VoyageRestController {
 	IVoyageService voyageService;
 
 	@ApiOperation(value = "Ajouter un voyage")
+	@ApiResponse(response = Voyage.class,responseContainer = "List",message = "voyage added successfully",
+	code = 201)
 	@PostMapping("/addvoyage")
 	@ResponseBody
 	public Voyage addVoyage(@RequestBody Voyage voy) {
