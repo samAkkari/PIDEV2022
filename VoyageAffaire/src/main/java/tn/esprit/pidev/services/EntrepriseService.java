@@ -48,4 +48,9 @@ public class EntrepriseService implements IEntrepriseService {
 		return 0;
 	}
 
+	@Override
+	public List<Entreprise> findEntreprise(String matricule) {
+		return null;
+	}
+
 }

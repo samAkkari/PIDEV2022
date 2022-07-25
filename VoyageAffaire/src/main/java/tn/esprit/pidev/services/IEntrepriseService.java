@@ -15,6 +15,8 @@ public interface IEntrepriseService {
 	Entreprise getEntrepriseById(Long idEntreprise);
 
 	List<Entreprise> getEntreprises();
+	
+	List<Entreprise> findEntreprise(String matricule);
 
 	int nombrePublicationParEntreprise(Long idEntreprise);
 
