@@ -1,0 +1,61 @@
+package tn.esprit.pidev.services;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import tn.esprit.pidev.entities.Voyage;
+import tn.esprit.pidev.repositories.VoyageRepository;
+
+
+@Service
+public class VoyageService implements IVoyageService {
+
+	@Autowired
+	VoyageRepository voyageRepository;
+
+	@Override
+	public Long ModifierVoyage(Voyage voyage) {
+		voyageRepository.save(voyage);
+		return voyage.getIdVoyage();
+	}
+
+	@Override
+	public Long AjouterVoyage(Voyage voyage) {
+		List<String> nomemploye = new ArrayList<String>();
+		String x = "";
+		voyageRepository.findAll().forEach(x -> {
+			
+			if (    voyage.getDestinisation() == x.getDestinisation() && 
+					x.getObjet_voyage() == voyage.getObjet_voyage() &&
+					(voyage.getDateDep().before(x.getDateRet())  ||
+					x.getDateDep().before(voyage.getDateRet())) )  {
+						x = "hello";
+										
+					}
+				});
+		System.out.println("employé notifier " + x);
+
+		voyageRepository.save(voyage);
+		
+		return voyage.getIdVoyage();
+	}
+
+	@Override
+	public void SupprimerVoyage(Long idVoyage) {
+		voyageRepository.deleteById(idVoyage);
+
+	}
+
+	@Override
+	public Voyage getVoyageById(Long idVoyage) {
+		return voyageRepository.findById(idVoyage).orElse(null);
+	}
+
+	@Override
+	public List<Voyage> getVoyages() {
+		return voyageRepository.findAll();
+	}
+}

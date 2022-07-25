@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -37,6 +38,9 @@ public class Entreprise {
 	@ManyToOne
 	private Reclamation reclamEntreprise ;
 	
+	@ManyToMany
+	List<Evenemment> evenementsentreprise;
+	
 	//Constructeur
 	
 	
@@ -63,15 +67,23 @@ public class Entreprise {
 	
 	
 	
-	
-	public Entreprise() {
-		super();
-	}
-
 
 
 	//Getters and setters
 	
+	public Entreprise() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+
+
+
+
+
 	public Reclamation getReclamEntreprise() {
 		return reclamEntreprise;
 	}
@@ -146,6 +158,30 @@ public class Entreprise {
 
 	public void setInvitations(List<Invitation> invitations) {
 		this.invitations = invitations;
+	}
+
+
+
+
+
+
+
+
+
+	public List<Evenemment> getEvenementsentreprise() {
+		return evenementsentreprise;
+	}
+
+
+
+
+
+
+
+
+
+	public void setEvenementsentreprise(List<Evenemment> evenementsentreprise) {
+		this.evenementsentreprise = evenementsentreprise;
 	}
 
 	

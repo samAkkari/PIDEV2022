@@ -1,18 +1,24 @@
 package tn.esprit.pidev.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.pidev.entities.Employe;
+import tn.esprit.pidev.entities.Voyage;
 import tn.esprit.pidev.repositories.EmployeRepository;
+import tn.esprit.pidev.repositories.VoyageRepository;
 
 @Service
 public class EmployeService implements IEmployeService {
 
 	@Autowired
 	EmployeRepository employeRepository;
+	
+	@Autowired
+	VoyageRepository voyageRepository;
 
 	@Override
 	public Long ModifierEmploye(Employe employe) {
@@ -42,4 +48,25 @@ public class EmployeService implements IEmployeService {
 		return employeRepository.findAll();
 	}
 
+	@Override
+	public void ajouterEmployeEtAffecterAvoyage(Employe employe, Long idVoyage) {
+		// TODO Auto-generated method stub
+		System.out.print("ajouterEmployeEtAffecterAvoyage");
+		Voyage v=voyageRepository.findById(idVoyage).orElse(null);
+		System.out.print("v: "+v.getObjet_voyage());
+		if (employe.getVoyages() == null || employe.getVoyages().size() ==0 ) {
+			List<Voyage> lV = new ArrayList<Voyage>();
+			lV.add(v);
+			employe.setVoyages(lV);
+		} else {
+			employe.getVoyages().add(v);
+		}
+		
+		employeRepository.save(employe);
+	}
+
+
+	
 }
+
+
