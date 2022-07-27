@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tn.esprit.pidev.entities.Entreprise;
+import tn.esprit.pidev.entities.Invitation;
 import tn.esprit.pidev.services.EntrepriseService;
 
 @RequestMapping("/entreprise")
@@ -60,8 +62,14 @@ public class EntrepriseRestController {
 	
 	@ApiOperation(value = "S'authentifier")
 	@PostMapping("/authenticate")
+	public List<Entreprise> loginEntreprise(@RequestParam String email, @RequestParam String password) {
+		return null;
+	}
+	
+	@ApiOperation(value = "Recupere Entreprise")
+	@GetMapping("/recupererEntreprise/{IdEntreprise}")
 	@ResponseBody
-	public void loginEntreprise(@RequestBody Entreprise entreprise) {
-		
+	public Entreprise getEntreprise(@PathVariable("IdEntreprise") Long IdEntreprise) {
+		return entrepriseService.getEntrepriseById(IdEntreprise);
 	}
 }

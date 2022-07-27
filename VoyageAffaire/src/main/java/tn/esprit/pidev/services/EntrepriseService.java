@@ -53,4 +53,11 @@ public class EntrepriseService implements IEntrepriseService {
 		return null;
 	}
 
+	@Override
+	public List<Entreprise> findByMatrciule(String matrciule) {
+		// TODO Auto-generated method stub
+		return entrepriseRespository.findByMatrciule(matrciule);
+	}
+
+
 }

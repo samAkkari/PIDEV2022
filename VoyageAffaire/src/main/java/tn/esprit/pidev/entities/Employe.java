@@ -11,6 +11,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 
@@ -34,10 +39,12 @@ private Profession profession;
 List<Voyage>voyages;
 
 @OneToMany(mappedBy="empcommentaire")
+@JsonIgnore
 List<Commentaire> commentaires;
 
 
 @OneToMany(mappedBy="employepublication")
+@JsonIgnore
 List<Publication>publications; 
 
 @ManyToOne

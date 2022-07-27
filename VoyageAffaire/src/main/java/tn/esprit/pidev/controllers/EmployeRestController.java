@@ -1,8 +1,11 @@
 package tn.esprit.pidev.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tn.esprit.pidev.entities.Employe;
-
+import tn.esprit.pidev.entities.Entreprise;
+import tn.esprit.pidev.entities.Invitation;
 import tn.esprit.pidev.services.IEmployeService;
 import tn.esprit.pidev.services.IVoyageService;
 
@@ -53,9 +57,23 @@ public class EmployeRestController {
 		employeService.SupprimerEmploye(IdEmploye);
 	}
 	
+	@GetMapping("/listeEmployes")
+	@ResponseBody
+	public List<Employe> listeEmployes() {
+		return employeService.getEmployes();
+	}
+	
+	@ApiOperation(value = "Recupere un IdEmploye")
+	@GetMapping("/recupererEmploye/{IdEmploye}")
+	@ResponseBody
+	public Employe getInvitation(@PathVariable("IdEmploye") Long IdEmploye) {
+		return employeService.getEmployeById(IdEmploye);
+	}
+	
 	@PostMapping("/ajouter-employe/{id-voyage}")
 	@ResponseBody
 	public void EmployerVoyage(@RequestBody Employe employe,@PathVariable("id-voyage") Long idVoyage) {
 		employeService.ajouterEmployeEtAffecterAvoyage(employe,idVoyage);
+
 
 }}

@@ -2,35 +2,43 @@ package tn.esprit.pidev.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity(name= "entreprise")
-@Table(name= "entreprise")
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
+
+@Entity
+@Data
 public class Entreprise {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idEntreprise;
 	private String NomEntreprise ;
-	private String Matrciule   ;
+	private String matrciule   ;
 	private String tel;
 	private String DomaineAcitivites;
 	@Enumerated(EnumType.STRING)
 	private ObjetVoyage ObjetVoyage;
 	
 	@OneToMany(mappedBy="entreprisepublication")
+	@JsonIgnore
 	private List<Publication>publications; 
 
 	@OneToMany(mappedBy="entrepriseinvit")
+	@JsonIgnore
 	private List<Invitation>invitations; 
 	
 	
@@ -39,32 +47,33 @@ public class Entreprise {
 	private Reclamation reclamEntreprise ;
 	
 	@ManyToMany
-	List<Evenemment> evenementsentreprise;
+	private List<Evenemment> evenementsentreprise;
 	
 	//Constructeur
 	
-	
-	
-
 	public Entreprise(Long idEntreprise, String nomEntreprise, String matrciule, String tel, String domaineAcitivites,
 			tn.esprit.pidev.entities.ObjetVoyage objetVoyage, List<Publication> publications,
-			List<Invitation> invitations, Reclamation reclamEntreprise) {
+			List<Invitation> invitations, Reclamation reclamEntreprise, List<Evenemment> evenementsentreprise) {
 		super();
 		this.idEntreprise = idEntreprise;
 		this.NomEntreprise = nomEntreprise;
-		this.Matrciule = matrciule;
+		this.matrciule = matrciule;
 		this.tel = tel;
 		this.DomaineAcitivites = domaineAcitivites;
 		this.ObjetVoyage = objetVoyage;
 		this.publications = publications;
 		this.invitations = invitations;
 		this.reclamEntreprise = reclamEntreprise;
+		this.evenementsentreprise = evenementsentreprise;
 	}
 
 		
 	
 
-	
+	public Entreprise(Long idEntreprise) {
+		super();
+		this.idEntreprise = idEntreprise;
+	}
 	
 	
 
@@ -75,10 +84,6 @@ public class Entreprise {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
-
-
 
 
 
@@ -111,11 +116,11 @@ public class Entreprise {
 	}
 
 	public String getMatrciule() {
-		return Matrciule;
+		return matrciule;
 	}
 
 	public void setMatrciule(String matrciule) {
-		Matrciule = matrciule;
+		matrciule = matrciule;
 	}
 
 	public String getTel() {
