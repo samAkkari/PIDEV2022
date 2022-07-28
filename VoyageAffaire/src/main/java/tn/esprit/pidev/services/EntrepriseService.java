@@ -1,6 +1,7 @@
 package tn.esprit.pidev.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,15 +50,14 @@ public class EntrepriseService implements IEntrepriseService {
 	}
 
 	@Override
-	public List<Entreprise> findEntreprise(String matricule) {
+	public Entreprise signIn(String matrciule, String password) {
+		Entreprise entreprise = entrepriseRespository.findByMatrciule(matrciule);
+		if(entreprise != null) {
+			if(entreprise.getMdp().equals(password)) {
+				return entreprise;
+			}
+		}
 		return null;
 	}
-
-	@Override
-	public List<Entreprise> findByMatrciule(String matrciule) {
-		// TODO Auto-generated method stub
-		return entrepriseRespository.findByMatrciule(matrciule);
-	}
-
 
 }

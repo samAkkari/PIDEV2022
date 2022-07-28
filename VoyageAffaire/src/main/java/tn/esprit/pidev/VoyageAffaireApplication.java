@@ -11,7 +11,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableWebMvc
 @SpringBootApplication
-@EnableJpaRepositories
 public class VoyageAffaireApplication {
 
 	public static void main(String[] args) {

@@ -1,6 +1,7 @@
 package tn.esprit.pidev.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -62,8 +63,8 @@ public class EntrepriseRestController {
 	
 	@ApiOperation(value = "S'authentifier")
 	@PostMapping("/authenticate")
-	public List<Entreprise> loginEntreprise(@RequestParam String email, @RequestParam String password) {
-		return null;
+	public Entreprise loginEntreprise(@RequestParam String matricule, @RequestParam String password) {
+		return entrepriseService.signIn(matricule, password);
 	}
 	
 	@ApiOperation(value = "Recupere Entreprise")

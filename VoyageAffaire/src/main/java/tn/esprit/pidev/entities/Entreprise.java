@@ -30,6 +30,7 @@ public class Entreprise {
 	private String matrciule   ;
 	private String tel;
 	private String DomaineAcitivites;
+	private String mdp;
 	@Enumerated(EnumType.STRING)
 	private ObjetVoyage ObjetVoyage;
 	
@@ -52,7 +53,7 @@ public class Entreprise {
 	//Constructeur
 	
 	public Entreprise(Long idEntreprise, String nomEntreprise, String matrciule, String tel, String domaineAcitivites,
-			tn.esprit.pidev.entities.ObjetVoyage objetVoyage, List<Publication> publications,
+			tn.esprit.pidev.entities.ObjetVoyage objetVoyage, List<Publication> publications, String mdp,
 			List<Invitation> invitations, Reclamation reclamEntreprise, List<Evenemment> evenementsentreprise) {
 		super();
 		this.idEntreprise = idEntreprise;
@@ -65,10 +66,25 @@ public class Entreprise {
 		this.invitations = invitations;
 		this.reclamEntreprise = reclamEntreprise;
 		this.evenementsentreprise = evenementsentreprise;
+		this.mdp = mdp;
 	}
 
 		
 	
+
+	public String getMdp() {
+		return mdp;
+	}
+
+
+
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+
+
+
 
 	public Entreprise(Long idEntreprise) {
 		super();
